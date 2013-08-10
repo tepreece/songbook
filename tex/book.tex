@@ -1,0 +1,33 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[bookmarks]{hyperref}
+\usepackage{eo-unicode}
+\usepackage[chorded]{songs}
+%\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+\newindex{titleidx}{###BOOKNAME###_title}
+\newauthorindex{authidx}{###BOOKNAME###_auth}
+
+\input{tex/styles.tex}
+\input{tex/styles-book.tex}
+
+\input{###BOOKNAME###.book}
+
+\title{\songbooktitle}
+\author{\songbookauthor}
+
+\def\###BOOKNAME###{}%
+
+\begin{document}
+	\maketitle
+	\pagebreak
+	\showindex{}{titleidx}
+	\pagebreak
+	\showindex{}{authidx}
+	\pagebreak
+	\begin{songs}{titleidx,authidx}
+		\input{working/songs_###BOOKNAME###.tex}
+	\end{songs}
+\end{document}
+
