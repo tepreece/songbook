@@ -19,7 +19,7 @@ songs.mk: Makefile $(BOOKS) $(SONGS)
 	
 .pdf-targets: .pdfs
 
-working/%_title.sxd: working/book.%.tex working/songs.%.tex working
+working/%_title.sxd: working/book.%.tex working/songs_%.tex working
 	pdflatex -output-directory=working $<
 
 working/%_auth.sxd: working/%_title.sxd working
@@ -28,14 +28,9 @@ working/%_auth.sxd: working/%_title.sxd working
 working/%.sbx: working/%.sxd working
 	songidx $< $@
 
-working/book.%.pdf: working/book.%.tex
-	#working/%_title.sbx working/%_auth.sbx working
+working/book.%.pdf: working/book.%.tex working/%_title.sbx working/%_auth.sbx working
 	pdflatex -output-directory=working $<
 
 working/book.%.tex: %.book working/songs_%.tex working
 	./scripts/generate-book-tex.sh $<
-
-#working/songs.tex: working $(SONGS_WORKING)
-#	./scripts/generate-songs-tex.sh >$@
-#	./scripts/fix-lilypond.sh
 
