@@ -1,0 +1,24 @@
+Songbook v 0.2
+
+This is a basic template for creating songbooks using LaTeX, the Songs package, Lilypond and pdftk. You will need all of those installed, plus all the usual standard tools such as Make and sh, in order to use this template.
+
+To get started, put some songs in the "songs" directory. Each song file should have a filename ending in ".tex" contain a single song in LaTeX Songs format - ie, it should start with "\beginsong" and end with "\endsong".
+
+A secondary Makefile, songs.mk, will automatically be generated. This contains all of the rules for generating all the output files. This should get regenerated automatically whenever you change an input file, but sometimes this doesn't happen for some reason. You can delete it (or make clean) and it'll be re-created automatically.
+
+If you want to create multiple books from the same song list, you can do this by creating ".book" files. There will be a TeX variable defined with the name of the book - so master.book will give you master.pdf with the variable "master" defined, etc. This is useful for producing parts for different instruments - for example, you might want to write all the songs in the original key, but transpose them to a different key for ukulele; you'd do this by making "ukulele.book" (with appropriate contents), and then putting the transpose command in a test for whether "ukulele" is defined in each song. A special case exists in the code for ukulele music, in which slash chords will be simplified to normal chords - eg "D/F#" will be changed to "D".
+
+Each ".book" file contains a couple of TeX variables that are used in the output, and should be self-explanatory.
+
+It will also automatically generate a single song sheet for each song. You can also add lead sheets to these, by putting Lilypond files in the songs directory, with the same filename (but with an extension of .ly instead of .tex); these will automatically be compiled and added to the end of the chord sheets. You can also override this for individual books - ie song.book.ly is more specific than song.ly.
+
+You can also put Lilypond in the chord sheets directly, using the format defined by lilypond-book. You might only want this to appear in the individual chord sheets, rather than the books; to do this you can test for \ifdefined\single.
+
+All the output goes into the "pdf" directory (which is created automatically).
+
+You can edit the templates to suit your style - they're in the "tex" directory. Note that there are some "special variables" that are substituted at compile time; these are written as ###VARIABLENAME### - there's no particular reason for this choice, other than that it's unlikely that you'll write anything that looks like this in TeX.
+
+To do: add more fine control about what gets created. Make the default templates nicer. Fix a few bugs in the build process (if it doesn't pick up a change, do a make clean for now).
+
+Questions and contributions to Thomas Preece (thomas@thomaspreece.net) please.
+
