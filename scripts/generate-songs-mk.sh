@@ -22,7 +22,7 @@ target_once () {
 		target "$@"
 	else
 		# do nothing; this target has already been made
-		return false
+		return 1
 	fi
 }
 
