@@ -1,6 +1,6 @@
 Songbook v 0.2
 
-This is a basic template for creating songbooks using LaTeX, the Songs package, Lilypond and pdftk. You will need all of those installed, plus all the usual standard tools such as Make and sh, in order to use this template.
+This is a basic template for creating songbooks using LaTeX, the Songs package (http://songs.sourceforge.net/), Lilypond and pdftk. You will need all of those installed, plus all the usual standard tools such as Make and sh, in order to use this template.
 
 To get started, put some songs in the "songs" directory. Each song file should have a filename ending in ".tex" contain a single song in LaTeX Songs format - ie, it should start with "\beginsong" and end with "\endsong".
 
